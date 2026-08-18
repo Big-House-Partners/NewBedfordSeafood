@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,48 +86,56 @@
         .testimonials-section {
             background: linear-gradient(180deg, var(--secondary) 0%, var(--primary) 100%);
             border-bottom: 1px solid var(--border);
-            padding: 3rem 0;
-            overflow: hidden;
+            padding: 4rem 2rem;
             animation: fadeInUp 0.8s ease-out 0.3s backwards;
         }
 
-        .testimonials-wrapper {
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
             position: relative;
-            width: 100%;
+        }
+
+        .testimonials-carousel {
+            flex: 1;
+            position: relative;
             overflow: hidden;
+            margin-right: -80px;
+            padding-right: 80px;
         }
 
         .testimonials-track {
             display: flex;
-            animation: scroll 40s linear infinite;
-            gap: 3rem;
-            padding: 0 2rem;
-        }
-
-        .testimonials-track:hover {
-            animation-play-state: paused;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            gap: 2rem;
         }
 
         .testimonial-item {
-            flex: 0 0 auto;
-            min-width: 500px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border);
+            flex: 0 0 100%;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1.5px solid var(--border);
             border-radius: 8px;
-            padding: 2rem;
+            padding: 2.5rem;
             transition: all 0.3s ease;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .testimonial-item:hover {
-            background: rgba(255, 255, 255, 0.06);
+        .testimonial-item.active {
+            background: rgba(255, 255, 255, 0.05);
             border-color: var(--accent);
         }
 
         .testimonial-text {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: var(--accent);
             font-style: italic;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             line-height: 1.5;
         }
 
@@ -143,13 +152,79 @@
             font-style: normal;
         }
 
-        @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(calc(-500px * 5 - 3rem * 5));
-            }
+        .testimonials-nav {
+            display: flex;
+            gap: 1rem;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .testimonials-button {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: transparent;
+            color: var(--accent-subtle);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            flex-shrink: 0;
+        }
+
+        .testimonials-button:hover:not(:disabled) {
+            color: var(--accent);
+            transform: scale(1.15);
+        }
+
+        .testimonials-button svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .testimonials-button:disabled {
+            opacity: 0.2;
+            cursor: not-allowed;
+        }
+
+        .testimonials-button:disabled:hover {
+            transform: scale(1);
+            color: var(--accent-subtle);
+        }
+
+        .testimonials-dots {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: var(--accent);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        .dot:hover {
+            background: var(--accent-subtle);
         }
 
         main {
@@ -301,25 +376,32 @@
             }
 
             .testimonials-section {
-                padding: 2rem 0;
+                padding: 3rem 1rem;
+            }
+
+            .testimonials-container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .testimonials-nav {
+                order: 2;
+            }
+
+            .testimonials-carousel {
+                order: 1;
+                margin-right: -60px;
+                padding-right: 60px;
             }
 
             .testimonial-item {
-                min-width: 300px;
-                padding: 1.5rem;
+                padding: 2rem;
+                min-height: 180px;
             }
 
             .testimonial-text {
                 font-size: 1rem;
-            }
-
-            @keyframes scroll {
-                0% {
-                    transform: translateX(0);
-                }
-                100% {
-                    transform: translateX(calc(-300px * 5 - 3rem * 5));
-                }
+                margin-bottom: 1.5rem;
             }
         }
 
@@ -363,68 +445,54 @@
     </header>
 
     <section class="testimonials-section">
-        <div class="testimonials-wrapper">
-            <div class="testimonials-track">
-                <div class="testimonial-item">
-                    <p class="testimonial-text">"Having a go-to partner we can trust is a must-have. And for us, that's Big House."</p>
-                    <div class="testimonial-author">Veronica Rosa</div>
-                    <div class="testimonial-title">Chief Advancement Officer, Concord Hospital Health System</div>
+        <div class="testimonials-container">
+            <div class="testimonials-carousel">
+                <div class="testimonials-track" id="testimonialTrack">
+                    <div class="testimonial-item active">
+                        <p class="testimonial-text">"Having a go-to partner we can trust is a must-have. And for us, that's Big House."</p>
+                        <div class="testimonial-author">Veronica Rosa</div>
+                        <div class="testimonial-title">Chief Advancement Officer, Concord Hospital Health System</div>
+                    </div>
+
+                    <div class="testimonial-item">
+                        <p class="testimonial-text">"Big House helped transform our culture, our business, and our relationship with our customers."</p>
+                        <div class="testimonial-author">Mike Glodziak</div>
+                        <div class="testimonial-title">CEO, Legacy Supply Chain</div>
+                    </div>
+
+                    <div class="testimonial-item">
+                        <p class="testimonial-text">"We achieved exactly what we set out to achieve."</p>
+                        <div class="testimonial-author">Carlene Rose</div>
+                        <div class="testimonial-title">Lakes Region Community College</div>
+                    </div>
+
+                    <div class="testimonial-item">
+                        <p class="testimonial-text">"The work was striking, relevant, and powerful."</p>
+                        <div class="testimonial-author">Elaine Whalen</div>
+                        <div class="testimonial-title">Anticoagulation Forum</div>
+                    </div>
+
+                    <div class="testimonial-item">
+                        <p class="testimonial-text">"The team is responsive, professional, and easy to work with. And always delivers top quality work."</p>
+                        <div class="testimonial-author">Robert Zammito</div>
+                        <div class="testimonial-title">General Manager, Toyota of Dartmouth</div>
+                    </div>
                 </div>
 
-                <div class="testimonial-item">
-                    <p class="testimonial-text">"Big House helped transform our culture, our business, and our relationship with our customers."</p>
-                    <div class="testimonial-author">Mike Glodziak</div>
-                    <div class="testimonial-title">CEO, Legacy Supply Chain</div>
-                </div>
+                <div class="testimonials-dots" id="dotsContainer"></div>
+            </div>
 
-                <div class="testimonial-item">
-                    <p class="testimonial-text">"We achieved exactly what we set out to achieve."</p>
-                    <div class="testimonial-author">Carlene Rose</div>
-                    <div class="testimonial-title">Lakes Region Community College</div>
-                </div>
-
-                <div class="testimonial-item">
-                    <p class="testimonial-text">"The work was striking, relevant, and powerful."</p>
-                    <div class="testimonial-author">Elaine Whalen</div>
-                    <div class="testimonial-title">Anticoagulation Forum</div>
-                </div>
-
-                <div class="testimonial-item">
-                    <p class="testimonial-text">"The team is responsive, professional, and easy to work with. And always delivers top quality work."</p>
-                    <div class="testimonial-author">Robert Zammito</div>
-                    <div class="testimonial-title">General Manager, Toyota of Dartmouth</div>
-                </div>
-
-                <!-- Duplicated items for seamless loop -->
-                <div class="testimonial-item">
-                    <p class="testimonial-text">"Having a go-to partner we can trust is a must-have. And for us, that's Big House."</p>
-                    <div class="testimonial-author">Veronica Rosa</div>
-                    <div class="testimonial-title">Chief Advancement Officer, Concord Hospital Health System</div>
-                </div>
-
-                <div class="testimonial-item">
-                    <p class="testimonial-text">"Big House helped transform our culture, our business, and our relationship with our customers."</p>
-                    <div class="testimonial-author">Mike Glodziak</div>
-                    <div class="testimonial-title">CEO, Legacy Supply Chain</div>
-                </div>
-
-                <div class="testimonial-item">
-                    <p class="testimonial-text">"We achieved exactly what we set out to achieve."</p>
-                    <div class="testimonial-author">Carlene Rose</div>
-                    <div class="testimonial-title">Lakes Region Community College</div>
-                </div>
-
-                <div class="testimonial-item">
-                    <p class="testimonial-text">"The work was striking, relevant, and powerful."</p>
-                    <div class="testimonial-author">Elaine Whalen</div>
-                    <div class="testimonial-title">Anticoagulation Forum</div>
-                </div>
-
-                <div class="testimonial-item">
-                    <p class="testimonial-text">"The team is responsive, professional, and easy to work with. And always delivers top quality work."</p>
-                    <div class="testimonial-author">Robert Zammito</div>
-                    <div class="testimonial-title">General Manager, Toyota of Dartmouth</div>
-                </div>
+            <div class="testimonials-nav">
+                <button class="testimonials-button" id="prevBtn" aria-label="Previous testimonial">
+                    <svg viewBox="0 0 24 24">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <button class="testimonials-button" id="nextBtn" aria-label="Next testimonial">
+                    <svg viewBox="0 0 24 24">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
             </div>
         </div>
     </section>
@@ -570,5 +638,75 @@
     </footer>
 
     <script src="https://player.vimeo.com/api/player.js"></script>
+
+    <script>
+        const testimonialTrack = document.getElementById('testimonialTrack');
+        const testimonialItems = document.querySelectorAll('.testimonial-item');
+        const dotsContainer = document.getElementById('dotsContainer');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        let currentIndex = 0;
+        const totalItems = testimonialItems.length;
+
+        // Create dots
+        testimonialItems.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.className = `dot ${index === 0 ? 'active' : ''}`;
+            dot.addEventListener('click', () => goToSlide(index));
+            dotsContainer.appendChild(dot);
+        });
+
+        function updateCarousel() {
+            // Move carousel
+            const offset = -currentIndex * 100;
+            testimonialTrack.style.transform = `translateX(${offset}%)`;
+
+            // Update dots
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+
+            // Update active testimonial
+            testimonialItems.forEach((item, index) => {
+                item.classList.toggle('active', index === currentIndex);
+            });
+
+            // Update button states
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex === totalItems - 1;
+        }
+
+        function goToSlide(index) {
+            currentIndex = Math.max(0, Math.min(index, totalItems - 1));
+            updateCarousel();
+        }
+
+        function nextSlide() {
+            if (currentIndex < totalItems - 1) {
+                currentIndex++;
+                updateCarousel();
+            }
+        }
+
+        function prevSlide() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
+        }
+
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'ArrowRight') nextSlide();
+        });
+
+        // Initialize
+        updateCarousel();
+    </script>
 </body>
 </html>
