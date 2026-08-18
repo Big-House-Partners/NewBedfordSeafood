@@ -81,6 +81,77 @@
             letter-spacing: 0.5px;
         }
 
+        /* Testimonials Section */
+        .testimonials-section {
+            background: linear-gradient(180deg, var(--secondary) 0%, var(--primary) 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 3rem 0;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out 0.3s backwards;
+        }
+
+        .testimonials-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .testimonials-track {
+            display: flex;
+            animation: scroll 40s linear infinite;
+            gap: 3rem;
+            padding: 0 2rem;
+        }
+
+        .testimonials-track:hover {
+            animation-play-state: paused;
+        }
+
+        .testimonial-item {
+            flex: 0 0 auto;
+            min-width: 500px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--accent);
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .testimonial-author {
+            color: var(--highlight);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .testimonial-title {
+            color: var(--accent-subtle);
+            font-size: 0.85rem;
+            font-style: normal;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-500px * 5 - 3rem * 5));
+            }
+        }
+
         main {
             max-width: 1400px;
             margin: 0 auto;
@@ -108,12 +179,12 @@
             }
         }
 
-        .project-group:nth-child(1) { animation-delay: 0.1s; }
-        .project-group:nth-child(2) { animation-delay: 0.2s; }
-        .project-group:nth-child(3) { animation-delay: 0.3s; }
-        .project-group:nth-child(4) { animation-delay: 0.4s; }
-        .project-group:nth-child(5) { animation-delay: 0.5s; }
-        .project-group:nth-child(6) { animation-delay: 0.6s; }
+        .project-group:nth-child(1) { animation-delay: 0.4s; }
+        .project-group:nth-child(2) { animation-delay: 0.5s; }
+        .project-group:nth-child(3) { animation-delay: 0.6s; }
+        .project-group:nth-child(4) { animation-delay: 0.7s; }
+        .project-group:nth-child(5) { animation-delay: 0.8s; }
+        .project-group:nth-child(6) { animation-delay: 0.9s; }
 
         .org-title {
             font-size: 1.3rem;
@@ -228,6 +299,28 @@
             .project-group {
                 margin-bottom: 2rem;
             }
+
+            .testimonials-section {
+                padding: 2rem 0;
+            }
+
+            .testimonial-item {
+                min-width: 300px;
+                padding: 1.5rem;
+            }
+
+            .testimonial-text {
+                font-size: 1rem;
+            }
+
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(calc(-300px * 5 - 3rem * 5));
+                }
+            }
         }
 
         footer {
@@ -268,6 +361,73 @@
         <img src="https://res.cloudinary.com/dvltssfeh/image/upload/v1767042498/BigHouse_K_gwkjgu.jpg" alt="Big House Logo" class="logo">
         <h1>Big House Recent Work</h1>
     </header>
+
+    <section class="testimonials-section">
+        <div class="testimonials-wrapper">
+            <div class="testimonials-track">
+                <div class="testimonial-item">
+                    <p class="testimonial-text">"Having a go-to partner we can trust is a must-have. And for us, that's Big House."</p>
+                    <div class="testimonial-author">Veronica Rosa</div>
+                    <div class="testimonial-title">Chief Advancement Officer, Concord Hospital Health System</div>
+                </div>
+
+                <div class="testimonial-item">
+                    <p class="testimonial-text">"Big House helped transform our culture, our business, and our relationship with our customers."</p>
+                    <div class="testimonial-author">Mike Glodziak</div>
+                    <div class="testimonial-title">CEO, Legacy Supply Chain</div>
+                </div>
+
+                <div class="testimonial-item">
+                    <p class="testimonial-text">"We achieved exactly what we set out to achieve."</p>
+                    <div class="testimonial-author">Carlene Rose</div>
+                    <div class="testimonial-title">Lakes Region Community College</div>
+                </div>
+
+                <div class="testimonial-item">
+                    <p class="testimonial-text">"The work was striking, relevant, and powerful."</p>
+                    <div class="testimonial-author">Elaine Whalen</div>
+                    <div class="testimonial-title">Anticoagulation Forum</div>
+                </div>
+
+                <div class="testimonial-item">
+                    <p class="testimonial-text">"The team is responsive, professional, and easy to work with. And always delivers top quality work."</p>
+                    <div class="testimonial-author">Robert Zammito</div>
+                    <div class="testimonial-title">General Manager, Toyota of Dartmouth</div>
+                </div>
+
+                <!-- Duplicated items for seamless loop -->
+                <div class="testimonial-item">
+                    <p class="testimonial-text">"Having a go-to partner we can trust is a must-have. And for us, that's Big House."</p>
+                    <div class="testimonial-author">Veronica Rosa</div>
+                    <div class="testimonial-title">Chief Advancement Officer, Concord Hospital Health System</div>
+                </div>
+
+                <div class="testimonial-item">
+                    <p class="testimonial-text">"Big House helped transform our culture, our business, and our relationship with our customers."</p>
+                    <div class="testimonial-author">Mike Glodziak</div>
+                    <div class="testimonial-title">CEO, Legacy Supply Chain</div>
+                </div>
+
+                <div class="testimonial-item">
+                    <p class="testimonial-text">"We achieved exactly what we set out to achieve."</p>
+                    <div class="testimonial-author">Carlene Rose</div>
+                    <div class="testimonial-title">Lakes Region Community College</div>
+                </div>
+
+                <div class="testimonial-item">
+                    <p class="testimonial-text">"The work was striking, relevant, and powerful."</p>
+                    <div class="testimonial-author">Elaine Whalen</div>
+                    <div class="testimonial-title">Anticoagulation Forum</div>
+                </div>
+
+                <div class="testimonial-item">
+                    <p class="testimonial-text">"The team is responsive, professional, and easy to work with. And always delivers top quality work."</p>
+                    <div class="testimonial-author">Robert Zammito</div>
+                    <div class="testimonial-title">General Manager, Toyota of Dartmouth</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <main>
         <section class="projects">
