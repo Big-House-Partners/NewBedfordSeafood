@@ -93,9 +93,6 @@
         .testimonials-container {
             max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            align-items: center;
-            gap: 2rem;
             position: relative;
         }
 
@@ -103,8 +100,6 @@
             flex: 1;
             position: relative;
             overflow: hidden;
-            margin-right: -80px;
-            padding-right: 80px;
         }
 
         .testimonials-track {
@@ -154,11 +149,12 @@
 
         .testimonials-nav {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
             flex-direction: row;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            margin-top: 2rem;
         }
 
         .testimonials-button {
@@ -384,14 +380,8 @@
                 gap: 1.5rem;
             }
 
-            .testimonials-nav {
-                order: 2;
-            }
-
             .testimonials-carousel {
                 order: 1;
-                margin-right: -60px;
-                padding-right: 60px;
             }
 
             .testimonial-item {
@@ -481,19 +471,19 @@
 
                 <div class="testimonials-dots" id="dotsContainer"></div>
             </div>
+        </div>
 
-            <div class="testimonials-nav">
-                <button class="testimonials-button" id="prevBtn" aria-label="Previous testimonial">
-                    <svg viewBox="0 0 24 24">
-                        <polyline points="15 18 9 12 15 6"></polyline>
-                    </svg>
-                </button>
-                <button class="testimonials-button" id="nextBtn" aria-label="Next testimonial">
-                    <svg viewBox="0 0 24 24">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                </button>
-            </div>
+        <div class="testimonials-nav">
+            <button class="testimonials-button" id="prevBtn" aria-label="Previous testimonial">
+                <svg viewBox="0 0 24 24">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+            <button class="testimonials-button" id="nextBtn" aria-label="Next testimonial">
+                <svg viewBox="0 0 24 24">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
         </div>
     </section>
 
